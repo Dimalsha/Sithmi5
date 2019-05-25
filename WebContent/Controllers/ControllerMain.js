@@ -9,7 +9,7 @@ $(document).on("click", "#btnLogin",function())
 	else
 	{
 		$("#divStsMsgLogin").html(result);	}
-	});
+	};
 	
 	
 	//==CLIENT-MODEL=================================
@@ -21,26 +21,25 @@ $(document).on("click", "#btnLogin",function())
 		
 		if($.trim($("#txtPassword").val())=="")
 			{	return "Enter Password";	}
-		
 		return "true";
-	}
+	};
 	
 	//==Item==========================================
-	//==Item------------------------------
+	//-----Item------------------------------
 	function isValidFormItem()
 	{
-		if($.trim($("#txtItemName").val())=="") {
-			return "Enter Item Name";
+		if($.trim($("#txtItemName").val())=="") 
+			{	return "Enter Item Name"; }
 			
-			/////////////////////////////////
-			//////////////////////////////////
+		if($.trim($("#txtItemDesc").val())=="")
+		{	return "Enter Description";	}
 			
 			return "true/false";
 		}
-	}
 	
-//--Items-------------------------------------------------
-//--Save/Update----------------------------------
+	//--Items-------------------------------------------------
+	//--Save/Update----------------------------------
+	
 	$(document.on("click","#btnSave", function()
 	{
 		var result = isValidFromItem(); //use client-model
@@ -48,19 +47,18 @@ $(document).on("click", "#btnLogin",function())
 		{	$("#fromItems").submit();	}
 		else
 		{	$("#divStsMsgItem").html(result);	}
-	});
+	}
 	
-	
-/////////--Edit---------------------
+	//--Edit---------------------,
 	$(document).on("click", "btnEdit", function()
 	{
 		$("#hidMode").val("update");
 		$("#hidID").val($(this).attr("param"));
 		$("#txtItemName").val($(this).closest("tr").find('td:eq(1)').text());
 		$("#txtItemDesc").val($(this).closest("tr").find('td:eq(2)').text());
-	});
+	})
 	
-///////---Remove------------
+//---------remove--------------------
 	$(document).on("click", "#btnRemove", function()
 	{
 		$("#hidMode").val("remove");

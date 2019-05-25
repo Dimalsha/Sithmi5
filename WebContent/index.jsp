@@ -1,5 +1,23 @@
+<%@ page import="com.models.User" %>
+<%@ page import="javax.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%
+	User user = new User();
+	String loginMsg = "Please login to continue...";
+	
+	if (request.getMethod().equalsIgnoreCase("post"))
+	{
+		if (user.login(request.getParameter("txtUserName"), request.getParameter("txtPassword")).equals("SUCCESS"))
+		{
+			request.getRequestDispatcher("/item.jsp").forward(request, response);
+		}
+		else 
+		{
+			loginMsg = "Invalid credentials...";
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +34,7 @@
 		Password <input id="txtUserName" name="txtUserPassword" type="password"> <br>
 		<input id="btnLogin" name="btnLogin" type="button" value="Login"> <br>
 		<div id="divStsMsgLogin">
-			<% out.println(loginMsg); %>
+			<% out.println("loginMsg"); %>
 		</div>
 	</form>
 
